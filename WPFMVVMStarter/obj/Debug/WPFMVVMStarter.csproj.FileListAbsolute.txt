@@ -1,0 +1,16 @@
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\MainWindow.g.cs
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\View\RedView.g.cs
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\App.g.cs
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter_MarkupCompile.cache
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter_MarkupCompile.lref
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\bin\Debug\WPFMVVMStarter.exe.config
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\bin\Debug\WPFMVVMStarter.exe
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\bin\Debug\WPFMVVMStarter.pdb
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\MainWindow.baml
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\View\RedView.baml
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter.g.resources
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter.Properties.Resources.resources
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter.csproj.GenerateResource.cache
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter.csproj.CoreCompileInputs.cache
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter.exe
+C:\WPFProjects\WPFMVVMStarter\WPFMVVMStarter\obj\Debug\WPFMVVMStarter.pdb
