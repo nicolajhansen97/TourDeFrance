@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Bindable.cs" />
+    <Compile Include="Model\Cyclist.cs" />
     <Compile Include="ServiceContainer.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\RedViewModel.cs" />
