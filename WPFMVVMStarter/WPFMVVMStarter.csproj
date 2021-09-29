@@ -56,12 +56,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Bindable.cs" />
+    <Compile Include="Model\CycleObjects.cs" />
     <Compile Include="Model\Cyclist.cs" />
     <Compile Include="ServiceContainer.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\RedViewModel.cs" />
     <Compile Include="View\RedView.xaml.cs">
       <DependentUpon>RedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TourDeFranceView.xaml.cs">
+      <DependentUpon>TourDeFranceView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,10 @@
     <Page Include="View\RedView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TourDeFranceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

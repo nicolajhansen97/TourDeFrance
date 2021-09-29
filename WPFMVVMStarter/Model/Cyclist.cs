@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace WPFMVVMStarter.Model
 {
-    class Cyclist
+    class Cyclist : Bindable
     {
         private string name;
 
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value; propertyIsChanged(); }
         }
 
         private string gender;
@@ -21,7 +21,7 @@ namespace WPFMVVMStarter.Model
         public string Gender
         {
             get { return gender; }
-            set { gender = value; }
+            set { gender = value; propertyIsChanged();  }
         }
 
         private string countryOrigin;
@@ -29,7 +29,7 @@ namespace WPFMVVMStarter.Model
         public string CountryOrigin
         {
             get { return countryOrigin; }
-            set { countryOrigin = value; }
+            set { countryOrigin = value; propertyIsChanged(); }
         }
 
         private string resultTime;
@@ -37,7 +37,7 @@ namespace WPFMVVMStarter.Model
         public string ResultTime
         {
             get { return resultTime; }
-            set { resultTime = value; }
+            set { resultTime = value; propertyIsChanged(); }
         }
 
         private int endPosition;
@@ -45,7 +45,7 @@ namespace WPFMVVMStarter.Model
         public int EndPosition
         {
             get { return endPosition; }
-            set { endPosition = value; }
+            set { endPosition = value; propertyIsChanged(); }
         }
 
 
