@@ -24,9 +24,11 @@ namespace WPFMVVMStarter
         public MainWindow()
         {
             InitializeComponent();
+            /*
             ((App)App.Current).ContentControlRef = this.mainContent;
 
             ((App)App.Current).ChangeUserControl(typeof(RedViewModel));
+            */
         }
     }
 }

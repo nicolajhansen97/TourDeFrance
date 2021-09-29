@@ -60,12 +60,13 @@
     <Compile Include="Model\Cyclist.cs" />
     <Compile Include="ServiceContainer.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
-    <Compile Include="ViewModel\RedViewModel.cs" />
-    <Compile Include="View\RedView.xaml.cs">
-      <DependentUpon>RedView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\TourDeFranceViewModel.cs" />
     <Compile Include="View\TourDeFranceView.xaml.cs">
       <DependentUpon>TourDeFranceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TourDeFranceViewU.xaml.cs">
+      <DependentUpon>TourDeFranceViewU.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,11 +80,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\RedView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\TourDeFranceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TourDeFranceViewU.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

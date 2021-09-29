@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFMVVMStarter"
+        xmlns:viewmodel="clr-namespace:WPFMVVMStarter.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
     <StackPanel>
-        <ContentControl x:Name="mainContent" Width="750" Height="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></ContentControl>
+        <ContentControl Width="750" Height="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding CurrentView}"></ContentControl>
     </StackPanel>
 </Window>
