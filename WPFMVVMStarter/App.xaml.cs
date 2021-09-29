@@ -14,6 +14,7 @@ namespace WPFMVVMStarter
 {
     public partial class App : Application
     {
+        /*
         public ContentControl ContentControlRef { get; set; } = null;
 
         public App()
@@ -63,5 +64,7 @@ namespace WPFMVVMStarter
 
             return page;
         }
+        */
     }
+
 }

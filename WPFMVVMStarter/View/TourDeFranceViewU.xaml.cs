@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WPFMVVMStarter.View
 {
     /// <summary>
-    /// Interaction logic for RedView.xaml
+    /// Interaction logic for TourDeFranceViewU.xaml
     /// </summary>
-    public partial class RedView : UserControl
+    public partial class TourDeFranceViewU : UserControl
     {
-        public RedView()
+        public TourDeFranceViewU()
         {
             InitializeComponent();
         }
