@@ -47,7 +47,5 @@ namespace WPFMVVMStarter.Model
             get { return endPosition; }
             set { endPosition = value; propertyIsChanged(); }
         }
-
-
     }
 }

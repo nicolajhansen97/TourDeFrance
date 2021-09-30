@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Xml;
 using System.Xml.Linq;
 using WPFMVVMStarter.Model;
 
@@ -23,6 +26,7 @@ namespace WPFMVVMStarter.ViewModel
         }
 
         public DelegateCommand sortbyName { get; set; }
+        public DelegateCommand validateDTD { get; set; }
 
         private string _sport = "Sport: ";
 
@@ -55,7 +59,14 @@ namespace WPFMVVMStarter.ViewModel
 
         public TourDeFranceViewModel()
         {
-            ReadAndBuildXML();
+            // ReadAndBuildXML();
+            //  Parser();
+         
+
+            validateDTD = new DelegateCommand(o =>
+            {
+                Validator();
+            });
             sortbyName = new DelegateCommand( o => 
             {
                 //sortMethod 
@@ -144,8 +155,68 @@ namespace WPFMVVMStarter.ViewModel
             Console.WriteLine("Done creating/modifying xml");
         }
 
+        public static void Parser()
+        {
+
+            //XElement document = new XDocument();
+
+            //string fileName = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
+            //    XElement root = XElement.Load(fileName);
+
+            //    var participants = from e in root.Descendants("event_participant") select e;
+
+
+            //    foreach (XElement event_participant in participants)
+            //    {
+
+            //    document.Add(new XElement(event_participant));
+            //}
+
+            //   document.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-FranceNoAtt.xml");
+
+
+            var xmlStr = File.ReadAllText(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml");
+
+
+            var str = XElement.Parse(xmlStr);
+
+            var result = str.Elements("event_participant").
+        Where(x => x.Element("category").Value.Equals("verb")).ToList();
+
+            Console.WriteLine(result);
+
+        }
 
 
 
+        static void Validator()
+        {
+            string fileName = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
+            XmlReaderSettings settings = new XmlReaderSettings();
+
+            settings.XmlResolver = new XmlUrlResolver();
+
+            settings.ValidationType = ValidationType.DTD;
+            settings.DtdProcessing = DtdProcessing.Parse;
+            settings.ValidationEventHandler += new System.Xml.Schema.ValidationEventHandler(ValidationCallBack);
+            settings.IgnoreWhitespace = true;
+
+            XmlReader reader = XmlReader.Create(fileName, settings);
+
+            // Parse the file.
+            while (reader.Read())
+            {
+                System.Console.WriteLine("{0}, {1}: {2} ", reader.NodeType, reader.Name, reader.Value);
+            }
+            MessageBox.Show("Validated the DTD succesfully!");
+        }
+
+        private static void ValidationCallBack(object sender, System.Xml.Schema.ValidationEventArgs e)
+        {
+            if (e.Severity == System.Xml.Schema.XmlSeverityType.Warning)
+                MessageBox.Show("Warning: Matching schema not found.  No validation occurred." + e.Message);
+            else // Error
+                MessageBox.Show("Validation error: " + e.Message);
+        }
     }
 }
