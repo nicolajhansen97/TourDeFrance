@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Xml.Linq;
 using WPFMVVMStarter.Model;
 
@@ -11,12 +14,15 @@ namespace WPFMVVMStarter.ViewModel
 {
     class TourDeFranceViewModel : Bindable
     {
+        
         private List<Cyclist> _cyclists = new List<Cyclist>();
         public List<Cyclist> Cyclists
         {
             get { return _cyclists; }
             set { _cyclists = value; propertyIsChanged(); }
         }
+
+        public DelegateCommand sortbyName { get; set; }
 
         private string _sport = "Sport: ";
 
@@ -50,6 +56,10 @@ namespace WPFMVVMStarter.ViewModel
         public TourDeFranceViewModel()
         {
             ReadAndBuildXML();
+            sortbyName = new DelegateCommand( o => 
+            {
+                //sortMethod 
+            });
         }
 
 

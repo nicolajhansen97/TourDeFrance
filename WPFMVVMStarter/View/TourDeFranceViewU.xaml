@@ -8,22 +8,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type model:Cyclist}">
-            <StackPanel Orientation="Horizontal" Background="Aqua" >
-                <Label Content="Name:"></Label>
-                <Label Content="{Binding Name}"></Label>
-                <Label Content="Country:"></Label>
-                <Label Content="{Binding CountryOrigin}"></Label>
-                <Label Content="Gender:"></Label>
-                <Label Content="{Binding Gender}"></Label>
-                <Label Content="ResultTime:"></Label>
-                <Label Content="{Binding ResultTime}"></Label>
-                <Label Content="Endposition:"></Label>
-                <Label Content="{Binding EndPosition}"></Label>
-            </StackPanel>
-        </DataTemplate>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="FontSize" Value="15"/>
         </Style>
     </UserControl.Resources>
     <Grid Background="Beige">
@@ -39,7 +29,31 @@
             <Label Content="{Binding LapName}"/>
             <Label Content="{Binding Distance}"/>
             <Label Content="{Binding DateOfEvent}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="click me" Command="{Binding sortbyName}" />
+                <Button Content="click me2"/>
+            </StackPanel>
         </StackPanel>
-        <ListView ItemsSource="{Binding Cyclists}" Margin="10,10,10,10" Grid.Row="1"/>
+        <ListView ItemsSource="{Binding Cyclists}" Margin="10,10,10,10" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type model:Cyclist}">
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Name}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Command="{Binding sortbyName}">Name</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Gender" Width="100" DisplayMemberBinding="{Binding Gender}"/>
+                    <GridViewColumn Header="CountryId" Width="100" DisplayMemberBinding="{Binding CountryOrigin}"/>
+                    <GridViewColumn Header="ResultTime" Width="100" DisplayMemberBinding="{Binding ResultTime}"/>
+                    <GridViewColumn Header="End position" Width="100" DisplayMemberBinding="{Binding EndPosition}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>
