@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\Morta\Source\Repos\TourDeFrance1\WPFMVVMStarter\obj\Debug\
+C:\Users\Morta\Source\Repos\TourDeFrance1\WPFMVVMStarter\obj\Release\
 WPFMVVMStarter
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Morta\Source\Repos\TourDeFrance1\WPFMVVMStarter\App.xaml
 31724709551
 
-15484450075
+141326809442
 13-1505183044
 MainWindow.xaml;View\TourDeFranceView.xaml;View\TourDeFranceViewU.xaml;
 
