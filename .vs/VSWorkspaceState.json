@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WPFMVVMStarter",
+    "\\WPFMVVMStarter\\Model",
+    "\\WPFMVVMStarter\\View",
+    "\\WPFMVVMStarter\\ViewModel"
   ],
-  "SelectedNode": "\\WPFMVVMStarter.sln",
   "PreviewInSolutionExplorer": false
 }
