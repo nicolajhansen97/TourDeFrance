@@ -40,9 +40,9 @@ namespace WPFMVVMStarter.Model
             set { resultTime = value; propertyIsChanged(); }
         }
 
-        private int endPosition;
+        private string endPosition;
 
-        public int EndPosition
+        public string EndPosition
         {
             get { return endPosition; }
             set { endPosition = value; propertyIsChanged(); }
