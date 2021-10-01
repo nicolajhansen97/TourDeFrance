@@ -29,8 +29,9 @@
             <Label Content="{Binding LapName}"/>
             <Label Content="{Binding Distance}"/>
             <Label Content="{Binding DateOfEvent}"/>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="470,10,0,0">
                 <Button Content="Validate DTD" Command="{Binding validateDTD}" />
+                <Button Content="Parse the list to XML" Command="{Binding runParser}" />
             </StackPanel>
         </StackPanel>
         <ListView ItemsSource="{Binding Cyclists}" Margin="10,10,10,10" Grid.Row="1">

@@ -12,7 +12,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using WPFMVVMStarter.Model;
 
 namespace WPFMVVMStarter.ViewModel
@@ -31,6 +30,7 @@ namespace WPFMVVMStarter.ViewModel
         public DelegateCommand sortbyCountry { get; set; }
         public DelegateCommand sortbyEndPosition { get; set; }
 
+        public DelegateCommand runParser { get; set; }
         public DelegateCommand validateDTD { get; set; }
 
         private string _sport = "Sport: ";
@@ -65,8 +65,12 @@ namespace WPFMVVMStarter.ViewModel
         public TourDeFranceViewModel()
         {
             ReadAndBuildXML();
-            Parser();
-         
+            
+            runParser = new DelegateCommand(o =>
+            {
+                Parser();
+            });
+
             validateDTD = new DelegateCommand(o =>
             {
                 Validator();
@@ -157,7 +161,7 @@ namespace WPFMVVMStarter.ViewModel
         public void Parser()
         {
             DataTable dt = new DataTable();
-  
+
             dt.TableName = "Cyclist";
             dt.Columns.Add("name");
             dt.Columns.Add("gender");
@@ -175,7 +179,8 @@ namespace WPFMVVMStarter.ViewModel
                 dt.Rows[dt.Rows.Count - 1]["end-position"] = item.EndPosition;
             }
 
-            dt.WriteXml(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory)+"/CyclistsNoAttributes.xml");
+            dt.WriteXml(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/CyclistsNoAttributes.xml");
+            MessageBox.Show("The cyclist data is parsed to XML and saved on your desktop!");
 
         }
 
