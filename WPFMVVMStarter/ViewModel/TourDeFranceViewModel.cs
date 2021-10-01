@@ -26,6 +26,9 @@ namespace WPFMVVMStarter.ViewModel
         }
 
         public DelegateCommand sortbyName { get; set; }
+        public DelegateCommand sortbyCountry { get; set; }
+        public DelegateCommand sortbyEndPosition { get; set; }
+
         public DelegateCommand validateDTD { get; set; }
 
         private string _sport = "Sport: ";
@@ -59,7 +62,7 @@ namespace WPFMVVMStarter.ViewModel
 
         public TourDeFranceViewModel()
         {
-            // ReadAndBuildXML();
+             ReadAndBuildXML();
             //  Parser();
          
 
@@ -67,10 +70,9 @@ namespace WPFMVVMStarter.ViewModel
             {
                 Validator();
             });
-            sortbyName = new DelegateCommand( o => 
-            {
-                //sortMethod 
-            });
+            sortbyName = new DelegateCommand( o => { Cyclists = Cyclists.OrderBy(x => x.Name).ToList(); });
+            sortbyCountry = new DelegateCommand( o => { Cyclists = Cyclists.OrderBy(x => x.CountryOrigin.Length).ThenBy(x => x.CountryOrigin).ToList(); });
+            sortbyEndPosition = new DelegateCommand(o => { Cyclists = Cyclists.OrderBy(x => x.EndPosition.Length).ThenBy(x => x.EndPosition).ToList(); });
         }
 
 
@@ -130,11 +132,6 @@ namespace WPFMVVMStarter.ViewModel
                             resultTime = item.Attribute("value").Value;
                         }
                     }
-                    //take last rank
-                    /*if (people.Element("results").Element("result").Attribute("result_code").Value == "rank")
-                    {
-                       // endPos2 = from e in people.Elements("results") select (from d in e.Elements("result") select d.Value);  //where people.Element("reults").Element("result").Attribute("result_code").Value == "rank" select e;
-                    }*/
                 }
                 else { endPos2 = "NC"; resultTime = "NC"; }
 

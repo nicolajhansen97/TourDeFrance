@@ -30,7 +30,6 @@
             <Label Content="{Binding Distance}"/>
             <Label Content="{Binding DateOfEvent}"/>
             <StackPanel Orientation="Horizontal">
-                <Button Content="click me" Command="{Binding sortbyName}" />
                 <Button Content="Validate DTD" Command="{Binding validateDTD}" />
             </StackPanel>
         </StackPanel>
@@ -47,11 +46,18 @@
                             <GridViewColumnHeader Command="{Binding sortbyName}">Name</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    
                     <GridViewColumn Header="Gender" Width="100" DisplayMemberBinding="{Binding Gender}"/>
-                    <GridViewColumn Header="CountryId" Width="100" DisplayMemberBinding="{Binding CountryOrigin}"/>
-                    <GridViewColumn Header="ResultTime" Width="100" DisplayMemberBinding="{Binding ResultTime}"/>
-                    <GridViewColumn Header="End position" Width="100" DisplayMemberBinding="{Binding EndPosition}"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding CountryOrigin}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Command="{Binding sortbyCountry}">CountryId</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Result Time" Width="100" DisplayMemberBinding="{Binding ResultTime}"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding EndPosition}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Command="{Binding sortbyEndPosition}">End Position</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

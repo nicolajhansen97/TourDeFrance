@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WPFMVVMStarter",
+    "\\WPFMVVMStarter\\ViewModel"
   ],
-  "SelectedNode": "\\WPFMVVMStarter.sln",
+  "SelectedNode": "\\WPFMVVMStarter\\ViewModel\\TourDeFranceViewModel.cs",
   "PreviewInSolutionExplorer": false
 }
