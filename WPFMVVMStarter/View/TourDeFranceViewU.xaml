@@ -52,7 +52,11 @@
                             <GridViewColumnHeader Command="{Binding sortbyCountry}">CountryId</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Header="Result Time" Width="100" DisplayMemberBinding="{Binding ResultTime}"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding ResultTime}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Command="{Binding sortbyEndPosition}">Result Time</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding EndPosition}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Command="{Binding sortbyEndPosition}">End Position</GridViewColumnHeader>

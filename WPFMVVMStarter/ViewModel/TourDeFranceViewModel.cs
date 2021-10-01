@@ -62,14 +62,14 @@ namespace WPFMVVMStarter.ViewModel
 
         public TourDeFranceViewModel()
         {
-             ReadAndBuildXML();
-            //  Parser();
+            ReadAndBuildXML();
+            Parser();
          
-
             validateDTD = new DelegateCommand(o =>
             {
                 Validator();
             });
+
             sortbyName = new DelegateCommand( o => { Cyclists = Cyclists.OrderBy(x => x.Name).ToList(); });
             sortbyCountry = new DelegateCommand( o => { Cyclists = Cyclists.OrderBy(x => x.CountryOrigin.Length).ThenBy(x => x.CountryOrigin).ToList(); });
             sortbyEndPosition = new DelegateCommand(o => { Cyclists = Cyclists.OrderBy(x => x.EndPosition.Length).ThenBy(x => x.EndPosition).ToList(); });
@@ -152,35 +152,47 @@ namespace WPFMVVMStarter.ViewModel
             Console.WriteLine("Done creating/modifying xml");
         }
 
-        public static void Parser()
+        public void Parser()
         {
+            //make new xml wiht hardcoded element names and give it data from list.
+            /*
+            XmlDocument XD = new XmlDocument();
 
-            //XElement document = new XDocument();
+            XmlElement root = XD.CreateElement("file");
+            //Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
+            XD.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/TEST.xml");
+            */
+            /*
+            XDocument doc = new XDocument(
+                new XDeclaration("1.0", "utf-8", "yes"),
+                new XElement("participants",
+                    new XElement("cyclist", new XElement("name","Bob"),new XElement("gender","male")
+                                            , new XElement("countryId", "male"), new XElement("result-time", "male"), 
+                                            new XElement("end-position", "male"))
+                )
+            );
 
-            //string fileName = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
-            //    XElement root = XElement.Load(fileName);
+            doc.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/method2.xml");
+            */
 
-            //    var participants = from e in root.Descendants("event_participant") select e;
+            XDocument doc = new XDocument();
+            XmlWriter xw = XmlWriter.Create("method1.xml");
 
+            xw.WriteStartDocument();
 
-            //    foreach (XElement event_participant in participants)
-            //    {
+            xw.WriteStartElement("root");
 
-            //    document.Add(new XElement(event_participant));
-            //}
+            xw.WriteStartElement("element");
+            xw.WriteAttributeString("no", "34");
+            xw.WriteString("some text");
+            xw.WriteEndElement();
+            xw.WriteWhitespace("\n"); // example
+            xw.WriteEndElement();
+            xw.WriteEndDocument();
 
-            //   document.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-FranceNoAtt.xml");
+            xw.Close();
 
-
-            var xmlStr = File.ReadAllText(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml");
-
-
-            var str = XElement.Parse(xmlStr);
-
-            var result = str.Elements("event_participant").
-        Where(x => x.Element("category").Value.Equals("verb")).ToList();
-
-            Console.WriteLine(result);
+            //doc.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) +"/"+ xw);
 
         }
 
