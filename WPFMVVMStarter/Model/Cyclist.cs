@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace WPFMVVMStarter.Model
 {
+
+    /// <summary>
+    /// The following is the data class. (Its also the task A in the assignment).
+    /// </summary>
     public class Cyclist : Bindable
     {
         private string name;
