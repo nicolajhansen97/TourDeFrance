@@ -66,16 +66,19 @@ namespace WPFMVVMStarter.ViewModel
         {
             ReadAndBuildXML();
             
+            //Runs the parser method when the command is called through the delegatecommand which is actived when you click the button.
             runParser = new DelegateCommand(o =>
             {
                 Parser();
             });
 
+            //Runs the validator method when the command is called through the delegatecommand which is actived when you click the button.
             validateDTD = new DelegateCommand(o =>
             {
                 Validator();
             });
 
+            //Runs the different sorting when the command is called through the delegatecommand which is actived when you click the button.
             sortbyName = new DelegateCommand( o => { Cyclists = Cyclists.OrderBy(x => x.Name).ToList(); });
             sortbyCountry = new DelegateCommand( o => { Cyclists = Cyclists.OrderBy(x => x.CountryOrigin.Length).ThenBy(x => x.CountryOrigin).ToList(); });
             sortbyEndPosition = new DelegateCommand(o => { Cyclists = Cyclists.OrderBy(x => x.EndPosition.Length).ThenBy(x => x.EndPosition).ToList(); });
@@ -111,8 +114,6 @@ namespace WPFMVVMStarter.ViewModel
             }
             LapName = "Lap Name: " + LapName;
             Distance = "Distance: " + Distance + "Km";
-            //LapName +=;
-            //Distance +=;
             DateOfEvent +=root.Element("query-response").Element("sport").Element("tournament_template").Element("tournament")
                 .Element("tournament_stage").Element("event").Attribute("startdate").Value;
 
@@ -151,13 +152,11 @@ namespace WPFMVVMStarter.ViewModel
                     ResultTime = resultTime/*math for endpos and time.*/
                 });
             }
-
-            //no attributes.
-            root.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-FranceNoAtt.xml");
-
-            Console.WriteLine("Done creating/modifying xml");
         }
 
+        /// <summary>
+        /// A datatable where we add all the data from our list and then we create a xml file out of it through a foreach loop.
+        /// </summary>
         public void Parser()
         {
             DataTable dt = new DataTable();
@@ -185,7 +184,10 @@ namespace WPFMVVMStarter.ViewModel
         }
 
 
-
+        /// <summary>
+        /// The validator takes the XML which we gives it. Then it validates with DTD given in the xml file, and if theres an error it will show the error in a messagebox.
+        /// If the XML is valid according to the DTD it will show a messagebox the it is valid.
+        /// </summary>
         static void Validator()
         {
             string fileName = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
