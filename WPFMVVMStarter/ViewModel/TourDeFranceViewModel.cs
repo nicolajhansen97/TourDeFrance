@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using WPFMVVMStarter.Model;
 
 namespace WPFMVVMStarter.ViewModel
@@ -154,45 +156,26 @@ namespace WPFMVVMStarter.ViewModel
 
         public void Parser()
         {
-            //make new xml wiht hardcoded element names and give it data from list.
-            /*
-            XmlDocument XD = new XmlDocument();
+            DataTable dt = new DataTable();
+  
+            dt.TableName = "Cyclist";
+            dt.Columns.Add("name");
+            dt.Columns.Add("gender");
+            dt.Columns.Add("countryid");
+            dt.Columns.Add("result-time");
+            dt.Columns.Add("end-position");
 
-            XmlElement root = XD.CreateElement("file");
-            //Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
-            XD.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/TEST.xml");
-            */
-            /*
-            XDocument doc = new XDocument(
-                new XDeclaration("1.0", "utf-8", "yes"),
-                new XElement("participants",
-                    new XElement("cyclist", new XElement("name","Bob"),new XElement("gender","male")
-                                            , new XElement("countryId", "male"), new XElement("result-time", "male"), 
-                                            new XElement("end-position", "male"))
-                )
-            );
+            foreach (var item in Cyclists)
+            {
+                dt.Rows.Add();
+                dt.Rows[dt.Rows.Count - 1]["name"] = item.Name;
+                dt.Rows[dt.Rows.Count - 1]["gender"] = item.Gender;
+                dt.Rows[dt.Rows.Count - 1]["countryid"] = item.CountryOrigin;
+                dt.Rows[dt.Rows.Count - 1]["result-time"] = item.ResultTime;
+                dt.Rows[dt.Rows.Count - 1]["end-position"] = item.EndPosition;
+            }
 
-            doc.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/method2.xml");
-            */
-
-            XDocument doc = new XDocument();
-            XmlWriter xw = XmlWriter.Create(System.Environment.SpecialFolder.DesktopDirectory) + "method1.xml");
-
-            xw.WriteStartDocument();
-
-            xw.WriteStartElement("root");
-
-            xw.WriteStartElement("element");
-            xw.WriteAttributeString("no", "34");
-            xw.WriteString("some text");
-            xw.WriteEndElement();
-            xw.WriteWhitespace("\n"); // example
-            xw.WriteEndElement();
-            xw.WriteEndDocument();
-
-            xw.Close();
-
-            //doc.Save(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) +"/"+ xw);
+            dt.WriteXml(Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory)+"/CyclistsNoAttributes.xml");
 
         }
 

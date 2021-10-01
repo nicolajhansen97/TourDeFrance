@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFMVVMStarter.Model
 {
-    class Cyclist : Bindable
+    public class Cyclist : Bindable
     {
         private string name;
 
