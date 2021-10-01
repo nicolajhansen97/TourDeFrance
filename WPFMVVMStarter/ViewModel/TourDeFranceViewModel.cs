@@ -16,9 +16,16 @@ using WPFMVVMStarter.Model;
 
 namespace WPFMVVMStarter.ViewModel
 {
+    /// <summary>
+    /// our viewmodel for everything we do in the view.
+    /// </summary>
     class TourDeFranceViewModel : Bindable
     {
-        
+        /// <summary>
+        /// this is our list of cyclists.
+        /// we made it a getter and setter so we could use it in our view 
+        /// with bindings
+        /// </summary>
         private List<Cyclist> _cyclists = new List<Cyclist>();
         public List<Cyclist> Cyclists
         {
@@ -61,10 +68,14 @@ namespace WPFMVVMStarter.ViewModel
             get { return _dateOfEvent; }
             set { _dateOfEvent = value; propertyIsChanged(); }
         }
-
+        
+        /// <summary>
+        /// This is our constructor it runs the building of the list,
+        /// and creates our commands. for the view.
+        /// </summary>
         public TourDeFranceViewModel()
         {
-            ReadAndBuildXML();
+            ReadXmlAndBuildList();
             
             //Runs the parser method when the command is called through the delegatecommand which is actived when you click the button.
             runParser = new DelegateCommand(o =>
@@ -84,22 +95,22 @@ namespace WPFMVVMStarter.ViewModel
             sortbyEndPosition = new DelegateCommand(o => { Cyclists = Cyclists.OrderBy(x => x.EndPosition.Length).ThenBy(x => x.EndPosition).ToList(); });
         }
 
-
-        private void ReadAndBuildXML()
+        /// <summary>
+        /// We read the xml file and get all the info we want and put them in the places they need to 
+        /// be, so here we populate our list with the cyclist data we need.
+        /// </summary>
+        private void ReadXmlAndBuildList()
         {
 
             string fileName = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory) + "/Cycling-Tour-De-France.xml";
-            //string fileName = "Cycling-Tour-De-France.xml"; //path
-
+           
             XElement root = XElement.Load(fileName);
 
-            // root.Descendants("deepPan").First().Add(newElement); // Wrong attempt... You must fint the place to "hook up the new element" first
-            //var Tour = from e in root.Descendants("sport") select e;
             var cyclists = from e in root.Descendants("event_participant") select e;
-            var test = from e in root.Descendants("results") select e;
-
+            //setting sport String with xml data
             Sport += root.Element("query-response").Element("sport").Attribute("name").Value;
             
+            //getting distance and lapName data with a loop. since there is multiple property's
             foreach (var item in root.Element("query-response").Element("sport").Element("tournament_template").Element("tournament")
                 .Element("tournament_stage").Element("event").Element("properties").Elements("property"))
             {
@@ -114,9 +125,10 @@ namespace WPFMVVMStarter.ViewModel
             }
             LapName = "Lap Name: " + LapName;
             Distance = "Distance: " + Distance + "Km";
+            //getting start date of event
             DateOfEvent +=root.Element("query-response").Element("sport").Element("tournament_template").Element("tournament")
                 .Element("tournament_stage").Element("event").Attribute("startdate").Value;
-
+            //getting end position and result time for the cyclists. 
             foreach (XElement people in cyclists)
             {
                 string endPos2 = " ";
@@ -124,7 +136,7 @@ namespace WPFMVVMStarter.ViewModel
                 
                 var results = people.Elements("results");
 
-                if (people.Element("results") != null)//does he have a result.
+                if (people.Element("results") != null)
                 {
 
                     foreach (var item in people.Element("results").Elements("result"))
@@ -142,14 +154,14 @@ namespace WPFMVVMStarter.ViewModel
                 }
                 else { endPos2 = "NC"; resultTime = "NC"; }
 
-                //XElement deepPan = (from e in pizza.Descendants("deepPan") select e).First()
+                //making the cyclist.
                 Cyclists.Add(new Cyclist
                 {
                     Name = people.Element("participant").Attribute("name").Value,
                     CountryOrigin = people.Element("participant").Attribute("countryFK").Value,
-                    EndPosition = endPos2/*need result value.*/,
+                    EndPosition = endPos2,
                     Gender = people.Element("participant").Attribute("gender").Value,
-                    ResultTime = resultTime/*math for endpos and time.*/
+                    ResultTime = resultTime
                 });
             }
         }
