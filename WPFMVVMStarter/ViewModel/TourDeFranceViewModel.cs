@@ -176,7 +176,7 @@ namespace WPFMVVMStarter.ViewModel
             */
 
             XDocument doc = new XDocument();
-            XmlWriter xw = XmlWriter.Create("method1.xml");
+            XmlWriter xw = XmlWriter.Create(System.Environment.SpecialFolder.DesktopDirectory) + "method1.xml");
 
             xw.WriteStartDocument();
 
